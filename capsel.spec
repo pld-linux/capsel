@@ -1,6 +1,6 @@
 #
 # Conditional build:
-# _without_dist_kernel - without distribution kernel
+%bcond_without  dist_kernel	# without distribution kernel
 #
 %define		_orig_name	capsel
 %define		_pre		rc1
@@ -22,10 +22,10 @@ Patch2:		%{name}-include-fix.patch
 URL:		http://cliph.linux.pl/capsel/
 BuildRequires:	%{kgcc_package}
 BuildRequires:	rpmbuild(macros) >= 1.118
-%{!?_without_dist_kernel:BuildRequires:	kernel-headers}
+%{?with_dist_kernel:BuildRequires:	kernel-headers}
 PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
-%{!?_without_dist_kernel:Requires:	kernel(capsel)}
+%{?with_dist_kernel:Requires:	kernel(capsel)}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -42,7 +42,7 @@ Summary:	Capsel - supports Linux-Privs security model
 Summary(pl):	Capsel - obs³uga modelu bezpieczeñstwa Linux-Privs
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
-%{!?_without_dist_kernel:%requires_releq_kernel_up}
+%{?with_dist_kernel:%requires_releq_kernel_up}
 Requires(post,postun):	/sbin/depmod
 Provides:	kernel(capsel)
 
@@ -57,7 +57,7 @@ Summary:	Capsel - supports Linux-Privs security model
 Summary(pl):	Capsel - obs³uga modelu bezpieczeñstwa Linux-Privs
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
-%{!?_without_dist_kernel:%requires_releq_kernel_smp}
+%{?with_dist_kernel:%requires_releq_kernel_smp}
 Requires(post,postun):	/sbin/depmod
 Provides:	kernel(capsel)
 
