@@ -1,0 +1,17 @@
+diff -ur capsel-2.0rc1.orig/src/Makefile capsel-2.0rc1/src/Makefile
+--- capsel-2.0rc1.orig/src/Makefile	Mon Jul 22 19:34:05 2002
++++ capsel-2.0rc1/src/Makefile	Mon Jul 22 19:39:00 2002
+@@ -64,9 +64,9 @@
+ 
+ CFLAGS:=$(CFLAGS) -D__KERNEL__ -DMODULE
+ 
+-ifdef CONFIG_SMP
+-CFLAGS:=$(CFLAGS) -D__SMP__
+-endif
++#ifdef CONFIG_SMP
++#CFLAGS:=$(CFLAGS) -D__SMP__
++#endif
+ 
+ LDFLAGS:=$(LDFLAGS) -i
+ 
+Only in capsel-2.0rc1/src: Makefile~
