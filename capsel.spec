@@ -13,6 +13,8 @@ Release:	%{_pre}.%{_rel}
 Group:		Base/Kernel
 License:	GPL v2
 Source0:	http://cliph.linux.pl/capsel/capsel-%{version}%{_pre}.tar.gz
+Source1:	%{name}.init
+Patch0:		%{name}-license.patch
 URL:		http://cliph.linux.pl/capsel/
 %{!?_without_dist_kernel:BuildRequires: kernel-headers}
 BuildRequires:	%{kgcc_package}
@@ -60,6 +62,7 @@ Capsel - modu³ j±dra SMP.
 
 %prep
 %setup -q -n %{name}-%{version}%{_pre}
+%patch0 -p1
 
 %build
 mkdir bin/
@@ -74,7 +77,7 @@ mv -f src/capsel.o bin/capselsmp.o
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{%{_sysconfdir}/%{_orig_name},/sbin/}
+install -d $RPM_BUILD_ROOT/{%{_sysconfdir}/{%{_orig_name},rc.d/init.d},/sbin/}
 install capsel.conf	$RPM_BUILD_ROOT/%{_sysconfdir}/capsel/default
 install src/user/capsel	$RPM_BUILD_ROOT/sbin/
 
@@ -84,8 +87,26 @@ install bin/capsel.o $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}/misc/capsel.o
 install -d $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}smp/misc
 install bin/capselsmp.o $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}smp/misc/capsel.o
 
+install %{SOURCE1}	$RPM_BUILD_ROOT/%{_sysconfdir}/rc.d/init.d/capsel
+
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post
+/sbin/chkconfig --add capsel
+if [ -f /var/lock/subsys/capsel ]; then
+        /etc/rc.d/init.d/capsel restart 1>&2
+else
+        echo "Run \"/etc/rc.d/init.d/caspel start\" to start capsel."
+fi
+
+%preun
+if [ "$1" = "0" ]; then
+        if [ -f /var/lock/subsys/capsel ]; then
+                /etc/rc.d/init.d/capsel stop 1>&2
+        fi
+        /sbin/chkconfig --del capsel
+fi
 
 %post	-n kernel-misc-capsel
 /sbin/depmod -a
@@ -104,6 +125,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc README CAPABILITIES ChangeLog TODO misc/* scripts/*
 %attr(755,root,root) /sbin/*
 %dir %attr(750,root,root) %{_sysconfdir}/capsel
+%attr(755,root,root) %{_sysconfdir}/rc.d/init.d/capsel
 %attr(750,root,root) %config(noreplace) %{_sysconfdir}/capsel/*
 
 %files -n kernel-misc-capsel
