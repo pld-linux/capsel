@@ -1,9 +1,9 @@
 #
 # _without_dist_kernel - without distribution kernel
 #
-%define		_rel		1
-%define		_pre		rc1
 %define		_orig_name	capsel
+%define		_pre		rc1
+%define		_rel		2
 
 Summary:	Capsel - supports Linux-Privs security model
 Summary(pl):	Capsel - obs³uga modelu bezpieczeñstwa Linux-Privs
@@ -14,6 +14,7 @@ Group:		Base/Kernel
 License:	GPL v2
 Source0:	http://cliph.linux.pl/capsel/capsel-%{version}%{_pre}.tar.gz
 Source1:	%{name}.init
+Patch0:		%{name}-2.0rc2.diff
 URL:		http://cliph.linux.pl/capsel/
 %{!?_without_dist_kernel:BuildRequires: kernel-headers}
 BuildRequires:	%{kgcc_package}
@@ -61,6 +62,7 @@ Capsel - modu³ j±dra SMP.
 
 %prep
 %setup -q -n %{name}-%{version}%{_pre}
+%patch0 -p1
 
 %build
 mkdir bin/
