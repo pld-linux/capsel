@@ -1,6 +1,5 @@
-#
 # _without_dist_kernel - without distribution kernel
-#
+
 %define		_orig_name	capsel
 %define		_pre		rc1
 
@@ -8,7 +7,7 @@ Summary:	Capsel - supports Linux-Privs security model
 Summary(pl):	Capsel - obs³uga modelu bezpieczeñstwa Linux-Privs
 Name:		%{_orig_name}
 Version:	2.0
-%define	_rel	7
+%define	_rel	8
 Release:	%{_pre}.%{_rel}
 Group:		Base/Kernel
 License:	GPL v2
