@@ -1,0 +1,51 @@
+#!/bin/sh
+#
+# capsel	This shell script takes care of starting and stopping arpd
+#
+# chkconfig:    2345 09 91
+# description:	supports Linux-Privs security model
+# processname:	capsel
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# See how we were called.
+case "$1" in
+  start)
+	if [ ! -f /var/lock/subsys/capsel ]; then
+		msg_starting capsel
+		modprobe capsel
+		daemon capsel
+		RETVAL=$?
+		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/capsel
+	else
+		msg_already_running capsel
+	fi
+	;;
+  stop)
+	if [ -f /var/lock/subsys/capsel ]; then
+		msg_stopping capsel
+		busy
+		rmmod capsel
+		ok
+		rm -f /var/lock/subsys/capsel >/dev/null 2>&1
+	else
+		msg_not_running capsel
+		exit 1
+	fi
+	;;
+  restart)
+	$0 stop
+	$0 start
+	;;
+  reload)
+  	capsel -f
+	capsel -c
+  	;;
+  status)
+  	echo "no status avaible yet..."
+	;;
+  *)
+	msg_usage "$0 {start|stop|restart|reload|status}"
+	exit 1
+esac
