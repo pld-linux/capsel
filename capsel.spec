@@ -133,7 +133,7 @@ fi
 %doc README CAPABILITIES ChangeLog TODO misc scripts conf
 %attr(755,root,root) /sbin/*
 %dir %attr(750,root,root) %{_sysconfdir}/capsel
-%attr(755,root,root) /etc/rc.d/init.d/capsel
+%attr(754,root,root) /etc/rc.d/init.d/capsel
 %attr(640,root,root) %config(noreplace) %{_sysconfdir}/capsel/*
 
 %files -n kernel-misc-capsel
