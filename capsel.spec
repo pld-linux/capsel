@@ -20,8 +20,8 @@ Patch0:		%{name}-2.0rc2.diff
 Patch1:		%{name}-no_kernel_smp.patch
 Patch2:		%{name}-include-fix.patch
 URL:		http://cliph.linux.pl/capsel/
-%{!?_without_dist_kernel:BuildRequires: kernel-headers}
 BuildRequires:	%{kgcc_package}
+%{!?_without_dist_kernel:BuildRequires: kernel-headers}
 %{!?_without_dist_kernel:Requires:	kernel(capsel)}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -83,14 +83,13 @@ mv -f src/capsel.o bin/capselsmp.o
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{%{_sysconfdir}/{%{_orig_name},rc.d/init.d},/sbin/}
-install capsel.conf	$RPM_BUILD_ROOT/%{_sysconfdir}/capsel/default
+install -d $RPM_BUILD_ROOT/{%{_sysconfdir}/{%{_orig_name},rc.d/init.d},/sbin/} \
+	$RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}{/misc,smp/misc}
+
+install capsel.conf	$RPM_BUILD_ROOT%{_sysconfdir}/capsel/default
 install src/user/capsel	$RPM_BUILD_ROOT/sbin/
 
-install -d $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}/misc
 install bin/capsel.o $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}/misc/capsel.o
-
-install -d $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}smp/misc
 install bin/capselsmp.o $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}smp/misc/capsel.o
 
 install %{SOURCE1}	$RPM_BUILD_ROOT//etc/rc.d/init.d/capsel
