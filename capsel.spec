@@ -8,7 +8,7 @@ Summary:	Capsel - supports Linux-Privs security model
 Summary(pl):	Capsel - obs³uga modelu bezpieczeñstwa Linux-Privs
 Name:		%{_orig_name}
 Version:	2.0
-%define	_rel	6
+%define	_rel	7
 Release:	%{_pre}.%{_rel}
 Group:		Base/Kernel
 License:	GPL v2
