@@ -23,6 +23,8 @@ URL:		http://cliph.linux.pl/capsel/
 BuildRequires:	%{kgcc_package}
 BuildRequires:	rpmbuild(macros) >= 1.118
 %{!?_without_dist_kernel:BuildRequires: kernel-headers}
+PreReq:		rc-scripts
+Requires(post,preun):	/sbin/chkconfig
 %{!?_without_dist_kernel:Requires:	kernel(capsel)}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
