@@ -91,7 +91,7 @@ install bin/capsel.o $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}/misc/capsel.o
 install -d $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}smp/misc
 install bin/capselsmp.o $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}smp/misc/capsel.o
 
-install %{SOURCE1}	$RPM_BUILD_ROOT/%{_sysconfdir}/rc.d/init.d/capsel
+install %{SOURCE1}	$RPM_BUILD_ROOT//etc/rc.d/init.d/capsel
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -129,7 +129,7 @@ fi
 %doc README CAPABILITIES ChangeLog TODO misc scripts conf
 %attr(755,root,root) /sbin/*
 %dir %attr(750,root,root) %{_sysconfdir}/capsel
-%attr(755,root,root) %{_sysconfdir}/rc.d/init.d/capsel
+%attr(755,root,root) /etc/rc.d/init.d/capsel
 %attr(640,root,root) %config(noreplace) %{_sysconfdir}/capsel/*
 
 %files -n kernel-misc-capsel
