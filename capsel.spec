@@ -12,7 +12,7 @@ Version:	1.9.99
 Release:	%{_pre}.%{_rel}
 Group:		Base/Kernel
 License:	GPL v2
-Source0:	http://cliph.linux.pl/capsel/capsel-%{version}pre5.tar.gz
+Source0:	http://cliph.linux.pl/capsel/capsel-%{version}%{_pre}.tar.gz
 URL:		http://cliph.linux.pl/capsel/
 %{!?_without_dist_kernel:BuildRequires: kernel-headers}
 BuildRequires:	%{kgcc_package}
@@ -69,7 +69,7 @@ mv -f src/capsel.o bin/capsel.o
 
 %{__make} clean
 
-%{__make} CC="%{kgcc} -D__KERNEL_SMP=1 -DCONFIG_X86_LOCAL_APIC"
+%{__make} CC="%{kgcc} -D__KERNEL_SMP=1 -D__SMP__ -DCONFIG_X86_LOCAL_APIC"
 mv -f src/capsel.o bin/capselsmp.o
 
 %install
