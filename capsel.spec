@@ -103,17 +103,17 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /sbin/chkconfig --add capsel
 if [ -f /var/lock/subsys/capsel ]; then
-        /etc/rc.d/init.d/capsel restart 1>&2
+	/etc/rc.d/init.d/capsel restart 1>&2
 else
-        echo "Run \"/etc/rc.d/init.d/caspel start\" to start capsel."
+	echo "Run \"/etc/rc.d/init.d/caspel start\" to start capsel."
 fi
 
 %preun
 if [ "$1" = "0" ]; then
-        if [ -f /var/lock/subsys/capsel ]; then
-                /etc/rc.d/init.d/capsel stop 1>&2
-        fi
-        /sbin/chkconfig --del capsel
+	if [ -f /var/lock/subsys/capsel ]; then
+		/etc/rc.d/init.d/capsel stop 1>&2
+	fi
+	/sbin/chkconfig --del capsel
 fi
 
 %post	-n kernel-misc-capsel
