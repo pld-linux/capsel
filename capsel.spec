@@ -14,6 +14,7 @@ Release:	%{_pre}.%{_rel}
 Group:		Base/Kernel
 License:	GPL v2
 Source0:	http://cliph.linux.pl/capsel/capsel-%{version}%{_pre}.tar.gz
+# Source0-md5:	f886467eb458812f8ee426541c7e4e06
 Source1:	%{name}.init
 Patch0:		%{name}-2.0rc2.diff
 Patch1:		%{name}-no_kernel_smp.patch
