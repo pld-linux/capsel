@@ -2,6 +2,7 @@
 # Conditional build:
 %bcond_without  dist_kernel	# without distribution kernel
 #
+%define		_kernel24	%(echo %{_kernel_ver} | grep -q '2\.[012]\.' ; echo $?)
 %define		_orig_name	capsel
 %define		_pre		rc1
 
@@ -26,6 +27,10 @@ BuildRequires:	rpmbuild(macros) >= 1.118
 PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
 %{?with_dist_kernel:Requires:	kernel(capsel)}
+%if !%{_kernel24}
+# 2.2/alpha has not necessary syscalls implemented
+ExclusiveArch:	%{ix86} ppc sparc
+%endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
