@@ -6,13 +6,13 @@
 %define		_orig_name	capsel
 
 Summary:	Capsel - supports Linux-Privs security model
-Summary(pl):	Capsel - wsparcie dla Linux-Privs
+Summary(pl):	Capsel - obs³uga modelu bezpieczeñstwa Linux-Privs
 Name:		%{_orig_name}
 Version:	1.9.99
 Release:	%{_pre}.%{_rel}
 Group:		Base/Kernel
 License:	GPL v2
-Source0:	http://cliph.linux.pl/capsel/capsel-1.9.99pre5.tar.gz
+Source0:	http://cliph.linux.pl/capsel/capsel-%{version}pre5.tar.gz
 URL:		http://cliph.linux.pl/capsel/
 %{!?_without_dist_kernel:BuildRequires: kernel-headers}
 BuildRequires:	%{kgcc_package}
@@ -21,8 +21,9 @@ Prereq:		/sbin/depmod
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Capsel module is a small but very powerful loadable Linux kernel module.
-Its advanced security features allows to improve overall system security.
+Capsel module is a small but very powerful loadable Linux kernel
+module. Its advanced security features allows to improve overall
+system security.
 
 %description -l pl
 Capsel jest ma³ym, ale bardzo potê¿nym ³adowalnym modu³em dla Linuksa.
@@ -30,7 +31,7 @@ Jego cechy pozwalaj± zwiêkszyæ bezpieczeñstwo systemu.
 
 %package -n kernel-misc-capsel
 Summary:	Capsel - supports Linux-Privs security model
-Summary(pl):	Capsel - wsparcie dla Linux-Privs
+Summary(pl):	Capsel - obs³uga modelu bezpieczeñstwa Linux-Privs
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 %{!?_without_dist_kernel:%requires_releq_kernel_up}
@@ -44,7 +45,7 @@ Capsel - modu³ j±dra.
 
 %package -n kernel-smp-misc-capsel
 Summary:	Capsel - supports Linux-Privs security model
-Summary(pl):	Capsel - wsparcie dla Linux-Privs
+Summary(pl):	Capsel - obs³uga modelu bezpieczeñstwa Linux-Privs
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 Prereq:		/sbin/depmod
@@ -55,7 +56,7 @@ Provides:	kernel(capsel)
 Capsel - SMP kernel module.
 
 %description -n kernel-smp-misc-capsel -l pl
-Capsel - wieloprocesorowy modu³ j±dra.
+Capsel - modu³ j±dra SMP.
 
 %prep
 %setup -q -n %{name}-%{version}%{_pre}
