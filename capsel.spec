@@ -15,6 +15,7 @@ License:	GPL v2
 Source0:	http://cliph.linux.pl/capsel/capsel-%{version}%{_pre}.tar.gz
 Source1:	%{name}.init
 Patch0:		%{name}-2.0rc2.diff
+Patch1:		%{name}-no_kernel_smp.patch
 URL:		http://cliph.linux.pl/capsel/
 %{!?_without_dist_kernel:BuildRequires: kernel-headers}
 BuildRequires:	%{kgcc_package}
@@ -63,6 +64,7 @@ Capsel - modu³ j±dra SMP.
 %prep
 %setup -q -n %{name}-%{version}%{_pre}
 %patch0 -p1
+%patch1 -p1
 
 %build
 mkdir bin/
