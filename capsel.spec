@@ -3,7 +3,7 @@
 #
 %define		_orig_name	capsel
 %define		_pre		rc1
-%define		_rel		2
+%define		_rel		3
 
 Summary:	Capsel - supports Linux-Privs security model
 Summary(pl):	Capsel - obs³uga modelu bezpieczeñstwa Linux-Privs
@@ -124,7 +124,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc README CAPABILITIES ChangeLog TODO misc/* scripts/*
+%doc README CAPABILITIES ChangeLog TODO misc scripts conf
 %attr(755,root,root) /sbin/*
 %dir %attr(750,root,root) %{_sysconfdir}/capsel
 %attr(755,root,root) %{_sysconfdir}/rc.d/init.d/capsel
