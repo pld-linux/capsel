@@ -134,12 +134,12 @@ fi
 %attr(755,root,root) /sbin/*
 %dir %attr(750,root,root) %{_sysconfdir}/capsel
 %attr(754,root,root) /etc/rc.d/init.d/capsel
-%attr(640,root,root) %config(noreplace) %{_sysconfdir}/capsel/*
+%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/capsel/*
 
 %files -n kernel-misc-capsel
 %defattr(644,root,root,755)
-%attr(644,root,root) /lib/modules/%{_kernel_ver}/misc/*
+/lib/modules/%{_kernel_ver}/misc/*
 
 %files -n kernel-smp-misc-capsel
 %defattr(644,root,root,755)
-%attr(644,root,root) /lib/modules/%{_kernel_ver}smp/misc/*
+/lib/modules/%{_kernel_ver}smp/misc/*
