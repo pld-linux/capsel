@@ -15,7 +15,7 @@ case "$1" in
 	if [ ! -f /var/lock/subsys/capsel ]; then
 		msg_starting capsel
 		modprobe capsel
-		daemon capsel
+		daemon capsel -c
 		RETVAL=$?
 		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/capsel
 	else
@@ -39,11 +39,10 @@ case "$1" in
 	$0 start
 	;;
   reload)
-  	capsel -f
 	capsel -c
   	;;
   status)
-  	echo "no status avaible yet..."
+  	capsel -s
 	;;
   *)
 	msg_usage "$0 {start|stop|restart|reload|status}"
