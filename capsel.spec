@@ -1,5 +1,7 @@
+#
+# Conditional build:
 # _without_dist_kernel - without distribution kernel
-
+#
 %define		_orig_name	capsel
 %define		_pre		rc1
 
@@ -19,7 +21,6 @@ Patch2:		%{name}-include-fix.patch
 URL:		http://cliph.linux.pl/capsel/
 %{!?_without_dist_kernel:BuildRequires: kernel-headers}
 BuildRequires:	%{kgcc_package}
-Prereq:		/sbin/depmod
 %{!?_without_dist_kernel:Requires:	kernel(capsel)}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -38,6 +39,7 @@ Summary(pl):	Capsel - obs³uga modelu bezpieczeñstwa Linux-Privs
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 %{!?_without_dist_kernel:%requires_releq_kernel_up}
+Requires(post,postun):	/sbin/depmod
 Provides:	kernel(capsel)
 
 %description -n kernel-misc-capsel
@@ -51,8 +53,8 @@ Summary:	Capsel - supports Linux-Privs security model
 Summary(pl):	Capsel - obs³uga modelu bezpieczeñstwa Linux-Privs
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
-Prereq:		/sbin/depmod
 %{!?_without_dist_kernel:%requires_releq_kernel_smp}
+Requires(post,postun):	/sbin/depmod
 Provides:	kernel(capsel)
 
 %description -n kernel-smp-misc-capsel
@@ -112,16 +114,16 @@ if [ "$1" = "0" ]; then
 fi
 
 %post	-n kernel-misc-capsel
-/sbin/depmod -a
+/sbin/depmod -a -F /boot/System.map-%{_kernel_ver} %{_kernel_ver}
 
 %postun	-n kernel-misc-capsel
-/sbin/depmod -a
+/sbin/depmod -a -F /boot/System.map-%{_kernel_ver} %{_kernel_ver}
 
 %post	-n kernel-smp-misc-capsel
-/sbin/depmod -a
+/sbin/depmod -a -F /boot/System.map-%{_kernel_ver}smp %{_kernel_ver}smp
 
 %postun	-n kernel-smp-misc-capsel
-/sbin/depmod -a
+/sbin/depmod -a -F /boot/System.map-%{_kernel_ver}smp %{_kernel_ver}smp
 
 %files
 %defattr(644,root,root,755)
