@@ -78,11 +78,11 @@ install -d $RPM_BUILD_ROOT/{%{_sysconfdir}/%{_orig_name},/sbin/}
 install capsel.conf	$RPM_BUILD_ROOT/%{_sysconfdir}/capsel/default
 install src/user/capsel	$RPM_BUILD_ROOT/sbin/
 
-install -d $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}
-install bin/capsel.o $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}/capsel.o
+install -d $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}/misc
+install bin/capsel.o $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}/misc/capsel.o
 
-install -d $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}smp
-install bin/capselsmp.o $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}smp/capsel.o
+install -d $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}smp/misc
+install bin/capselsmp.o $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}smp/misc/capsel.o
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -108,8 +108,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n kernel-misc-capsel
 %defattr(644,root,root,755)
-%attr(644,root,root) /lib/modules/%{_kernel_ver}/*
+%attr(644,root,root) /lib/modules/%{_kernel_ver}/misc/*
 
 %files -n kernel-smp-misc-capsel
 %defattr(644,root,root,755)
-%attr(644,root,root) /lib/modules/%{_kernel_ver}smp/*
+%attr(644,root,root) /lib/modules/%{_kernel_ver}smp/misc/*
