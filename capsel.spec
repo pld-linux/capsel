@@ -83,7 +83,7 @@ mv -f src/capsel.o bin/capselsmp.o
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/{%{_sysconfdir}/{%{_orig_name},rc.d/init.d},/sbin/} \
+install -d $RPM_BUILD_ROOT{%{_sysconfdir}/{%{_orig_name},rc.d/init.d},/sbin} \
 	$RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}{/misc,smp/misc}
 
 install capsel.conf	$RPM_BUILD_ROOT%{_sysconfdir}/capsel/default
@@ -92,7 +92,7 @@ install src/user/capsel	$RPM_BUILD_ROOT/sbin/
 install bin/capsel.o $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}/misc/capsel.o
 install bin/capselsmp.o $RPM_BUILD_ROOT/lib/modules/%{_kernel_ver}smp/misc/capsel.o
 
-install %{SOURCE1}	$RPM_BUILD_ROOT//etc/rc.d/init.d/capsel
+install %{SOURCE1}	$RPM_BUILD_ROOT/etc/rc.d/init.d/capsel
 
 %clean
 rm -rf $RPM_BUILD_ROOT
