@@ -126,7 +126,7 @@ fi
 %attr(755,root,root) /sbin/*
 %dir %attr(750,root,root) %{_sysconfdir}/capsel
 %attr(755,root,root) %{_sysconfdir}/rc.d/init.d/capsel
-%attr(750,root,root) %config(noreplace) %{_sysconfdir}/capsel/*
+%attr(640,root,root) %config(noreplace) %{_sysconfdir}/capsel/*
 
 %files -n kernel-misc-capsel
 %defattr(644,root,root,755)
