@@ -21,6 +21,7 @@ Patch1:		%{name}-no_kernel_smp.patch
 Patch2:		%{name}-include-fix.patch
 URL:		http://cliph.linux.pl/capsel/
 BuildRequires:	%{kgcc_package}
+BuildRequires:	rpmbuild(macros) >= 1.118
 %{!?_without_dist_kernel:BuildRequires: kernel-headers}
 %{!?_without_dist_kernel:Requires:	kernel(capsel)}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -114,16 +115,16 @@ if [ "$1" = "0" ]; then
 fi
 
 %post	-n kernel-misc-capsel
-/sbin/depmod -a %{!?_without_dist_kernel:-F /boot/System.map-%{_kernel_ver} }%{_kernel_ver}
+%depmod %{_kernel_ver}
 
 %postun	-n kernel-misc-capsel
-/sbin/depmod -a %{!?_without_dist_kernel:-F /boot/System.map-%{_kernel_ver} }%{_kernel_ver}
+%depmod %{_kernel_ver}
 
 %post	-n kernel-smp-misc-capsel
-/sbin/depmod -a %{!?_without_dist_kernel:-F /boot/System.map-%{_kernel_ver}smp }%{_kernel_ver}smp
+%depmod %{_kernel_ver}smp
 
 %postun	-n kernel-smp-misc-capsel
-/sbin/depmod -a %{!?_without_dist_kernel:-F /boot/System.map-%{_kernel_ver}smp }%{_kernel_ver}smp
+%depmod %{_kernel_ver}smp
 
 %files
 %defattr(644,root,root,755)
