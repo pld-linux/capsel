@@ -105,7 +105,7 @@ rm -rf $RPM_BUILD_ROOT
 if [ -f /var/lock/subsys/capsel ]; then
 	/etc/rc.d/init.d/capsel restart 1>&2
 else
-	echo "Run \"/etc/rc.d/init.d/caspel start\" to start capsel."
+	echo "Run \"/etc/rc.d/init.d/capsel start\" to start capsel."
 fi
 
 %preun
