@@ -21,9 +21,9 @@ Patch1:		%{name}-no_kernel_smp.patch
 Patch2:		%{name}-include-fix.patch
 URL:		http://cliph.linux.pl/capsel/
 BuildRequires:	%{kgcc_package}
-BuildRequires:	rpmbuild(macros) >= 1.118
 %{?with_dist_kernel:BuildRequires:	kernel-headers}
-PreReq:		rc-scripts
+BuildRequires:	rpmbuild(macros) >= 1.118
+Requires:	rc-scripts
 Requires(post,preun):	/sbin/chkconfig
 %{?with_dist_kernel:Requires:	kernel(capsel)}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -134,7 +134,7 @@ fi
 %attr(755,root,root) /sbin/*
 %dir %attr(750,root,root) %{_sysconfdir}/capsel
 %attr(754,root,root) /etc/rc.d/init.d/capsel
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/capsel/*
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/capsel/*
 
 %files -n kernel-misc-capsel
 %defattr(644,root,root,755)
