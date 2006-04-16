@@ -5,14 +5,14 @@
 %define		_orig_name	capsel
 %define		_pre		rc1
 
+%define	_rel	11
 Summary:	Capsel - supports Linux-Privs security model
 Summary(pl):	Capsel - obs³uga modelu bezpieczeñstwa Linux-Privs
 Name:		%{_orig_name}
 Version:	2.0
-%define	_rel	11
 Release:	%{_pre}.%{_rel}
-Group:		Base/Kernel
 License:	GPL v2
+Group:		Base/Kernel
 Source0:	http://cliph.linux.pl/capsel/capsel-%{version}%{_pre}.tar.gz
 # Source0-md5:	f886467eb458812f8ee426541c7e4e06
 Source1:	%{name}.init
@@ -22,10 +22,10 @@ Patch2:		%{name}-include-fix.patch
 URL:		http://cliph.linux.pl/capsel/
 BuildRequires:	%{kgcc_package}
 %{?with_dist_kernel:BuildRequires:	kernel-headers}
-BuildRequires:	rpmbuild(macros) >= 1.118
-Requires:	rc-scripts
+BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,preun):	/sbin/chkconfig
 %{?with_dist_kernel:Requires:	kernel(capsel)}
+Requires:	rc-scripts
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -102,17 +102,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add capsel
-if [ -f /var/lock/subsys/capsel ]; then
-	/etc/rc.d/init.d/capsel restart 1>&2
-else
-	echo "Run \"/etc/rc.d/init.d/capsel start\" to start capsel."
-fi
+%service capsel restart
 
 %preun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/capsel ]; then
-		/etc/rc.d/init.d/capsel stop 1>&2
-	fi
+	%service capsel stop
 	/sbin/chkconfig --del capsel
 fi
 
