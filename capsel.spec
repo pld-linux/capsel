@@ -7,7 +7,7 @@
 
 %define	_rel	11
 Summary:	Capsel - supports Linux-Privs security model
-Summary(pl.UTF-8):   Capsel - obsługa modelu bezpieczeństwa Linux-Privs
+Summary(pl.UTF-8):	Capsel - obsługa modelu bezpieczeństwa Linux-Privs
 Name:		%{_orig_name}
 Version:	2.0
 Release:	%{_pre}.%{_rel}
@@ -39,7 +39,7 @@ Jego cechy pozwalają zwiększyć bezpieczeństwo systemu.
 
 %package -n kernel-misc-capsel
 Summary:	Capsel - supports Linux-Privs security model
-Summary(pl.UTF-8):   Capsel - obsługa modelu bezpieczeństwa Linux-Privs
+Summary(pl.UTF-8):	Capsel - obsługa modelu bezpieczeństwa Linux-Privs
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 %{?with_dist_kernel:%requires_releq_kernel_up}
@@ -54,7 +54,7 @@ Capsel - moduł jądra.
 
 %package -n kernel-smp-misc-capsel
 Summary:	Capsel - supports Linux-Privs security model
-Summary(pl.UTF-8):   Capsel - obsługa modelu bezpieczeństwa Linux-Privs
+Summary(pl.UTF-8):	Capsel - obsługa modelu bezpieczeństwa Linux-Privs
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 %{?with_dist_kernel:%requires_releq_kernel_smp}
