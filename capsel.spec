@@ -7,7 +7,7 @@
 
 %define	_rel	11
 Summary:	Capsel - supports Linux-Privs security model
-Summary(pl):	Capsel - obs³uga modelu bezpieczeñstwa Linux-Privs
+Summary(pl.UTF-8):   Capsel - obsÅ‚uga modelu bezpieczeÅ„stwa Linux-Privs
 Name:		%{_orig_name}
 Version:	2.0
 Release:	%{_pre}.%{_rel}
@@ -33,13 +33,13 @@ Capsel module is a small but very powerful loadable Linux kernel
 module. Its advanced security features allows to improve overall
 system security.
 
-%description -l pl
-Capsel jest ma³ym, ale bardzo potê¿nym ³adowalnym modu³em dla Linuksa.
-Jego cechy pozwalaj± zwiêkszyæ bezpieczeñstwo systemu.
+%description -l pl.UTF-8
+Capsel jest maÅ‚ym, ale bardzo potÄ™Å¼nym Å‚adowalnym moduÅ‚em dla Linuksa.
+Jego cechy pozwalajÄ… zwiÄ™kszyÄ‡ bezpieczeÅ„stwo systemu.
 
 %package -n kernel-misc-capsel
 Summary:	Capsel - supports Linux-Privs security model
-Summary(pl):	Capsel - obs³uga modelu bezpieczeñstwa Linux-Privs
+Summary(pl.UTF-8):   Capsel - obsÅ‚uga modelu bezpieczeÅ„stwa Linux-Privs
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 %{?with_dist_kernel:%requires_releq_kernel_up}
@@ -49,12 +49,12 @@ Provides:	kernel(capsel)
 %description -n kernel-misc-capsel
 Capsel - kernel module.
 
-%description -n kernel-misc-capsel -l pl
-Capsel - modu³ j±dra.
+%description -n kernel-misc-capsel -l pl.UTF-8
+Capsel - moduÅ‚ jÄ…dra.
 
 %package -n kernel-smp-misc-capsel
 Summary:	Capsel - supports Linux-Privs security model
-Summary(pl):	Capsel - obs³uga modelu bezpieczeñstwa Linux-Privs
+Summary(pl.UTF-8):   Capsel - obsÅ‚uga modelu bezpieczeÅ„stwa Linux-Privs
 Release:	%{_rel}@%{_kernel_ver_str}
 Group:		Base/Kernel
 %{?with_dist_kernel:%requires_releq_kernel_smp}
@@ -64,8 +64,8 @@ Provides:	kernel(capsel)
 %description -n kernel-smp-misc-capsel
 Capsel - SMP kernel module.
 
-%description -n kernel-smp-misc-capsel -l pl
-Capsel - modu³ j±dra SMP.
+%description -n kernel-smp-misc-capsel -l pl.UTF-8
+Capsel - moduÅ‚ jÄ…dra SMP.
 
 %prep
 %setup -q -n %{name}-%{version}%{_pre}
